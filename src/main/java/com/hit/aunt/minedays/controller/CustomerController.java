@@ -8,7 +8,7 @@ public class CustomerController {
     @RequestMapping("/hit")
     public String index() {
 
-        return "Hello World";
+        return "MineDays（在线行程管理系统）";
 
     }
 }
