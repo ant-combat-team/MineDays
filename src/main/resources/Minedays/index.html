@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+#header {
+    background-color:seagreen;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:350px;
+    width:300px;
+    float:left;
+    padding:5px;	      
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+}
+#footer {
+    background-color:seagreen;
+    color:white;
+    clear:both;
+    text-align:center;
+   padding:5px;	 	 
+}
+</style>
+</head>
+
+<body>
+
+		<div id="header">
+			<h1>MineDays</h1>
+			<ul class="nav justify-content">
+				  <li class="nav-item">
+					  <p>一款高效的时间管理工具！</p> 
+					<a class="nav-link" href="#">切换账号</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">注册</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">关于我们</a>
+				  </li>
+			</ul>
+		</div>
+
+		<div id="nav">
+			<ul class="nav flex-column">
+			  <li class="nav-item">
+			    <b class="nav-link" href="#">今日任务一览</b>
+			  </li>
+			  <p></p>
+			  <p></p>
+			  <li class="nav-item">
+			    <b class="nav-link" href="#">添加/删除任务</b>				<!--导航栏-->
+			  </li>
+			  <p></p>
+			  <p></p>
+			  <li class="nav-item">
+			    <b class="nav-link" href="#">查看历史任务</b>
+		</div>
+				<p>选择日期：</p> 
+				<input type="text" class="demo-input" placeholder="请选择日期" id="test1">
+				
+				<script src="laydate/laydate.js"></script> <!-- 改成你的路径 -->
+				<script>
+				lay('#version').html('-v'+ laydate.v);
+				
+				//执行一个laydate实例
+				laydate.render({
+				  elem: '#test1' //指定元素
+				});
+				</script>
+				<p>添加任务：</p>
+				<p>上午：</p>
+				<input type="text" placeholder="请输入计划" id="test2">
+				<p>下午：</p>
+				<input type="text" placeholder="请输入计划" id="test3">
+				<p></p>
+				<button type="button">添加任务</button>
+		</div>
+			
+
+
+		<div id="footer">
+		Copyright@HIT MineDays Team
+		</div>
+
+</body>
+</html>
