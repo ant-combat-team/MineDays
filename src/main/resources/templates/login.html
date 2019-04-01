@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MineDapays | 高效日程管理</title>
+    <!-- 新 Bootstr 核心 CSS 文件 --><link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 可选的Bootstrap主题文件（一般不使用） --><script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --><script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 --><script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    h1{font-family:Serif;}
+    h2{font-family:Sans-serif ;}
+    h3{font-family:Monospace;}
+    h3.normal {font-weight: normal}
+    h3.thick {font-weight: bold}
+    h3.thicker {font-weight: 600}
+    h4{font-family:Cursive;}
+    h5{font-family:Fantasy;}
+    </style>
+	
+	<script type="text/javascript">
+		function ClickToLogin(){
+			var email1 = document.getElementById("exampleInputEmail1").value;
+			var pass1  = document.getElementById("exampleInputPassword1").value;
+			var obj = window.document.location;
+			var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+			$.ajax({
+				url: BASE_PATH + "/login/" + email1+ "/" + pass1,
+				type: "get",
+				success: function f(data) {
+					console.log(data);
+					debugger;
+					window.location.href ="/index.html";
+				},
+				error: function f(data) {
+					console.log(data);
+					debugger;
+					alert("请输入正确的kk");
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+					欢迎使用MineDays！
+				<div>
+					使用之前请先注册/登陆
+				</div>	
+			</h3>
+			<div class="row">
+				<div class="col-md-7">
+					<div class="jumbotron">
+						<h2>
+							<div>
+								MineDays
+							</div>
+							<div>
+								简洁明快的日程管理工具
+							</div>
+						</h2>
+						<h3 class="thicker">
+							合理规划日程，帮助您更加有效的安排时间
+						</h3>
+						<h4>
+							<span>这是由TheAntsTeam开发的日程管理应用，旨在为用户实现日程的规划、备忘等功能。</span>
+						</h4>
+					</div>
+				</div>
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-3">
+					<form role="form">
+						<div class="form-group">
+							 
+							<label for="exampleInputEmail1">
+								邮箱：
+							</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" />
+						</div>
+						<div class="form-group">
+							 
+							<label for="exampleInputPassword1">
+								密码：
+							</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" />
+						</div>
+						<button type="submit" class="btn btn-primary" onclick="ClickToLogin()">
+							登陆
+						</button>
+					</form>
+				</div>
+				<div class="col-md-1">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
