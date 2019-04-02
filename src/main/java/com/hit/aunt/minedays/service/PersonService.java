@@ -9,8 +9,11 @@ public interface PersonService {
     //删除数据
     int delete(Long x);
 
-    //查询
-    List<Person> query(String email);
+    //根据email查询
+    List<Person> emlquery(String email);
+
+    //根据id查询
+    List<Person> idquery(Long id);
 
     //更新数据
     int update(Person x);

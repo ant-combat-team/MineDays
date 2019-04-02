@@ -1,7 +1,7 @@
 package com.hit.aunt.minedays.controller;
-
 import com.hit.aunt.minedays.entity.Person;
 import com.hit.aunt.minedays.service.PersonService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,33 +11,50 @@ import java.util.List;
 public class LoginController {
     @Autowired
     private PersonService personServices;
+
     //模拟用户登录验证
-    @RequestMapping(value = "/login/{email1}/{pass1}", method = RequestMethod.GET)
-    public Object login(@PathVariable String email1, @PathVariable String pass1) {
-        List<Person> l=personServices.query(email1.substring(5));
-        if (l.size()== 0) {
+    @RequestMapping("/test1")
+    @ResponseBody
+    public Object login(Person person) {
+
+        List<Person> l = personServices.emlquery(person.getEmail().substring(0, 5));
+        System.out.println(person.getEmail());
+        System.out.println(person.getName());
+        if (l.size() == 0) {
+            System.out.println("l.size()== 0");
+            return "error";
+        } else if (l.get(0).getName().equals(person.getName())) {
+            System.out.println("OK");
+            return "success";
+        } else {
+            System.out.println("!l.get(0).getName().equals(person.getName())");
             return "error";
         }
-        else if(!l.get(1).getName().equals(pass1)){
-            return "error";
-        }
-        System.out.println(email1);
-        System.out.println(pass1);
-        return "success";
     }
-//    @Autowired
-//    private PersonService personServices;
-//    @RequestMapping(value="/index",method=RequestMethod.POST)
-//    @ResponseBody//这个注释在控制器为RestController的情况下加不加都一样，但是如果控制器是Controller类型就必须要加了,它可以把返回的对象直接解析为json对象返回客户端(强！)
-//    private String ajax(@RequestBody Person p1)//@RequestBody是作用于参数的，它实现了把客户端传过来的json数据解析为对象，作为参数传进来，不过客户端传过来的数据类型必须是application/json,不然会出错，这也是为什么客户端一定要设置ajax的contentType属性为"application/json"的原因
-//    {
-//        System.out.println("收到ajax请求");
-//        List list =personServices.query(p1.getUserId());
-//        if (list == null) {
-//            return "error";
-//        }
-//        else{
-//            return "success";
-//        }
-//    }
+
+    @RequestMapping("/test2")
+    @ResponseBody
+    public String login2(@RequestBody Person person) {
+
+        List<Person> l = personServices.emlquery(person.getEmail().substring(0, 5));
+        System.out.println(person.getEmail());
+        System.out.println(person.getName());
+        JSONObject container1 = new JSONObject();
+        if (l.size() == 0) {//未搜索到
+            System.out.println("没有此账号");
+            //container1.put("ANSW", "error");
+            //return container1;
+            return "NOTEXIST";
+        } else if (l.get(0).getName().equals(person.getName())) {//密码匹配成功
+            System.out.println("Success");
+            //container1.put("ANSW", "success");
+            //return container1;
+            return "SUCCESS";
+        } else {//密码不匹配
+            System.out.println("Error");
+            //container1.put("ANSW", "error");
+            //return container1;
+            return "ERROR";
+        }
+    }
 }

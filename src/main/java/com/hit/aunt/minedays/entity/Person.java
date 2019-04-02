@@ -8,7 +8,7 @@ public class Person implements Serializable {
     private String email;// 用户邮箱
     private String gender;// 用户性别
     private Integer enableStatus;// 可用状态：0、被禁止 1、可用
-    private Integer userType;// 1.顾客3.超级管理员
+    private Integer userType;// 1.顾客2.VIP3.超级管理员
     private Date createTime;// 创建时间
     private Date lastEditTime;// 最近一次的更新时间
 

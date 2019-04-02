@@ -3,27 +3,27 @@ package com.hit.aunt.minedays.entity;
 import java.util.Date;
 
 public class Account {
-    private Long       Account;// 主键ID
-    private String     username;// 用户名
+    private Long       AccountID;// 主键ID
+    private String     email;//邮箱账号
     private String     password;// 密码
     private Date       createTime;// 创建时间
     private Date       lastEditTime;// 最近一次的更新时间
-    private Person person;// 个人信息，关系为一一对应
+    private Person     person;// 个人信息，关系为一一对应
 
-    public Long getAccount() {
-        return Account;
+    public Long getAccountID() {
+        return AccountID;
     }
 
-    public void setAccount(Long account) {
-        Account = account;
+    public void setAccountID(Long accountid) {
+        AccountID = accountid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

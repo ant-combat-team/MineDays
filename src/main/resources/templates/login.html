@@ -22,22 +22,48 @@
 		function ClickToLogin(){
 			var email1 = document.getElementById("exampleInputEmail1").value;
 			var pass1  = document.getElementById("exampleInputPassword1").value;
-			var obj = window.document.location;
-			var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+			var xps
+			var json
+			json={email:email1,name:pass1}
+			console.log(encodeURI((JSON.stringify(json))));
 			$.ajax({
-				url: BASE_PATH + "/login/" + email1+ "/" + pass1,
-				type: "get",
-				success: function f(data) {
-					console.log(data);
-					debugger;
-					window.location.href ="/index.html";
+				url: 'test3',
+				type: "GET",
+				traditional:true,
+				data: json,
+				success: function (data) {
+
+					window.location.href="index.html"
 				},
-				error: function f(data) {
-					console.log(data);
-					debugger;
-					alert("请输入正确的kk");
-				}
+				contentType: "application/json;charset=UTF-8"
 			});
+			json={email:email1,name:pass1}
+			$.ajax({
+				url: 'test2',
+				type: "POST",
+				data: JSON.stringify(json),
+				//dataType:"json",
+				success: function (data) {
+					if(data=="SUCCESS"){
+						window.location.href="index.html"
+						//alert(data+"欢迎");
+					}
+					else if(data=="NOTEXIST"){
+						alert("该账号未注册，请输入正确的账号！")
+					}
+					else if(data=="ERROR"){
+						alert("密码错误，请输入正确的密码！")
+					}
+					else{
+						alert("抱歉！遭遇异常，请稍后再试。")
+					}
+				},
+				contentType: "application/json;charset=UTF-8"
+			});
+			//1)GET 请求发送的并不是JSON字符串，jquery会给他转成url的请求参数
+			//2）traditonal：true 不能省，这是防止浏览器将集合参数名为"favs[]"这样后台会报错
+			//3）POST请求的JSON.stringify不能省略
+			//4）至于contentType大家都说不能省，但是我发现还是可以省略的（chrome浏览器测试的）
 		}
 	</script>
 </head>
@@ -88,7 +114,7 @@
 							</label>
 							<input type="password" class="form-control" id="exampleInputPassword1" />
 						</div>
-						<button type="submit" class="btn btn-primary" onclick="ClickToLogin()">
+						<button type="button" class="btn btn-primary" onclick="ClickToLogin()">
 							登陆
 						</button>
 					</form>

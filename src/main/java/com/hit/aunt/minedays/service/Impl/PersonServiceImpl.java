@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
-@Service("studentServices")
+@Service("personServices")
 public class PersonServiceImpl implements PersonService {
 
     @Autowired
@@ -78,9 +78,35 @@ public class PersonServiceImpl implements PersonService {
     }
     //JDBC 查询数据
     @Override
-    public List<Person> query(String emails)  {
+    public List<Person> emlquery(String emails)  {
         //SQL
-        String sql = "SELECT *  FROM tab_person WHERE email="+emails;
+        String sql = "SELECT *  FROM tab_person WHERE email='"+emails+"'";
+        //结果
+        List<Person> list = jdbcTemplate.query(sql, new RowMapper<Person>() {
+            //映射每行数据
+            @Override
+            public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Person person =new Person();
+                person.setUserId(rs.getLong("userID"));
+                person.setName(rs.getString("userName"));
+                person.setProfileImg(rs.getString("profileImg"));
+                person.setEmail(rs.getString("email"));
+                person.setGender(rs.getString("gender"));
+                person.setEnableStatus(rs.getInt("enableStatus"));
+                person.setUserType(rs.getInt("userType"));
+                person.setCreateTime(rs.getDate("createTime"));
+                person.setLastEditTime(rs.getDate("lastEditTime"));
+                return person;
+            }
+
+        });
+        //返回结果
+        return list;
+    }
+    @Override
+    public List<Person> idquery(Long id)  {
+        //SQL
+        String sql = "SELECT *  FROM tab_person WHERE userID="+id;
         //结果
         List<Person> list = jdbcTemplate.query(sql, new RowMapper<Person>() {
             //映射每行数据
