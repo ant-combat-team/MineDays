@@ -13,9 +13,9 @@ public class testjdbc {
     //public static final String PASSWORD = "123456";
 
     public static void main(String[] args) throws Exception {
-        //2. 获得数据库连接
+        //获得数据库连接
         //Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        //3.操作数据库，实现增删改查
+        //操作数据库，实现增删改查
         //Statement stmt = conn.createStatement();
         //ResultSet rs = stmt.executeQuery("SELECT userName FROM tab_person");
         //如果有数据，rs.next()返回true

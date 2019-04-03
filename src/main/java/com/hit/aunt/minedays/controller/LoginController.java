@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 public class LoginController {
+
     @Autowired
     private PersonService personServices;
 
@@ -39,7 +40,7 @@ public class LoginController {
         List<Person> l = personServices.emlquery(person.getEmail().substring(0, 5));
         System.out.println(person.getEmail());
         System.out.println(person.getName());
-        JSONObject container1 = new JSONObject();
+        //JSONObject container1 = new JSONObject();
         if (l.size() == 0) {//未搜索到
             System.out.println("没有此账号");
             //container1.put("ANSW", "error");
