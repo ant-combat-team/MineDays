@@ -1,14 +1,13 @@
 package com.hit.aunt.minedays.controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
+@Controller
 public class CustomerController {
-    @RequestMapping("/hit")
-    public String index() {
-
-        return "MineDays（在线行程管理系统）";
-
+    @RequestMapping("/")
+    public String login() {
+        //return "index";
+        return "login";
     }
+
 }
