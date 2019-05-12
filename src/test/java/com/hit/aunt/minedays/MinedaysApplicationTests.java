@@ -11,6 +11,7 @@ public class MinedaysApplicationTests {
 
     @Test
     public void contextLoads() {
+
     }
 
 }
