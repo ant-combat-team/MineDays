@@ -24,19 +24,19 @@
 			var pass1  = document.getElementById("exampleInputPassword1").value;
 			var xps
 			var json
-			json={email:email1,name:pass1}
-			console.log(encodeURI((JSON.stringify(json))));
-			$.ajax({
-				url: 'test3',
-				type: "GET",
-				traditional:true,
-				data: json,
-				success: function (data) {
-
-					window.location.href="index.html"
-				},
-				contentType: "application/json;charset=UTF-8"
-			});
+			// json={email:email1,name:pass1}
+			// console.log(encodeURI((JSON.stringify(json))));
+			// $.ajax({
+			// 	url: 'test3',
+			// 	type: "GET",
+			// 	traditional:true,
+			// 	data: json,
+			// 	success: function (data) {
+			//
+			// 		window.location.href="index.html"
+			// 	},
+			// 	contentType: "application/json;charset=UTF-8"
+			// });
 			json={email:email1,name:pass1}
 			$.ajax({
 				url: 'test2',
@@ -66,7 +66,7 @@
 			//4）至于contentType大家都说不能省，但是我发现还是可以省略的（chrome浏览器测试的）
 		}
 		function ClickToSign(){
-			window.location.href="http://127.0.0.1:63342/minedays/src/main/resources/static/sign.html";
+			window.location.href="sign.html";
 
 		}
 	</script>
