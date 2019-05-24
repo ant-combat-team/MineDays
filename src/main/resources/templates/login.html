@@ -22,30 +22,15 @@
 		function ClickToLogin(){
 			var email1 = document.getElementById("exampleInputEmail1").value;
 			var pass1  = document.getElementById("exampleInputPassword1").value;
-			var xps
-			var json
-			json={email:email1,name:pass1}
-			console.log(encodeURI((JSON.stringify(json))));
+			var json={email:email1,password:pass1}
 			$.ajax({
-				url: 'test3',
-				type: "GET",
-				traditional:true,
-				data: json,
-				success: function (data) {
-
-					window.location.href="index.html"
-				},
-				contentType: "application/json;charset=UTF-8"
-			});
-			json={email:email1,name:pass1}
-			$.ajax({
-				url: 'test2',
+				url: 'signin',
 				type: "POST",
 				data: JSON.stringify(json),
 				//dataType:"json",
 				success: function (data) {
 					if(data=="SUCCESS"){
-						window.location.href="index.html"
+						window.location.href="newindex.html"
 						//alert(data+"欢迎");
 					}
 					else if(data=="NOTEXIST"){
