@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     @RequestMapping("/")
     public String login() {
-        //return "index";
         return "login";
     }
 
