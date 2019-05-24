@@ -18,7 +18,7 @@
         h5{font-family:Fantasy;}
     </style>
     <script type="text/javascript">
-        function SignTest(){
+        function ClickToSign(){
             var email1 = document.getElementById("exampleInputEmail1").value;
             var pass1  = document.getElementById("exampleInputPassword1").value;
             var pass2  = document.getElementById("exampleInputPassword2").value;
@@ -26,19 +26,19 @@
             var json
 
             if(pass1==pass2){
-                // json={email:email1,name:pass1}
-                // console.log(encodeURI((JSON.stringify(json))));
-                // $.ajax({
-                //     url: 'test1',
-                //     type: "GET",
-                //     traditional:true,
-                //     data: json,
-                //     success: function (data) {
-                //
-                //         window.location.href="index.html"
-                //     },
-                //     contentType: "application/json;charset=UTF-8"
-                // });
+                json={email:email1,name:pass1}
+                console.log(encodeURI((JSON.stringify(json))));
+                $.ajax({
+                    url: 'test3',
+                    type: "GET",
+                    traditional:true,
+                    data: json,
+                    success: function (data) {
+
+                        window.location.href="index.html"
+                    },
+                    contentType: "application/json;charset=UTF-8"
+                });
                 json={email:email1,name:pass1}
                 $.ajax({
                     url: 'test1',
@@ -54,7 +54,8 @@
                         }
                         else if(data=="EXIST"){
                             alert("该账号已注册，请直接登录！")
-                        } else {
+                        }
+                        else{
                             alert("抱歉！遭遇异常，请稍后再试。")
                         }
                     },
@@ -108,7 +109,7 @@
                             <input type="password" class="form-control" id="exampleInputPassword2" />
                         </div>
 
-                        <button type="button" class="btn btn-primary" onclick="SignTest()">
+                        <button type="button" class="btn btn-primary" href="http://127.0.0.1:63342/minedays/src/main/resources/static/Sign.html">
                             注册
                         </button>
                     </form>

@@ -13,27 +13,26 @@ public class LoginController {
     @Autowired
     private PersonService personServices;
 
-    //模拟注册
+    //模拟用户登录验证
     @RequestMapping("/test1")
     @ResponseBody
     public Object login(Person person) {
 
-        List<Person> l = personServices.emlquery(person.getEmail().substring(0,5));
+        List<Person> l = personServices.emlquery(person.getEmail().substring(0, 5));
+        System.out.println(person.getEmail());
+        System.out.println(person.getName());
         if (l.size() == 0) {
-            System.out.println("用户名未注册，可以注册");
-
-            if(personServices.add(person)!=0){
-                return "SUCCESS";
-            } else {
-                return "ERROR";
-            }
+            System.out.println("l.size()== 0");
+            return "error";
+        } else if (l.get(0).getName().equals(person.getName())) {
+            System.out.println("OK");
+            return "success";
         } else {
-            return "EXIST";
+            System.out.println("!l.get(0).getName().equals(person.getName())");
+            return "error";
         }
-
     }
 
-    //模拟登陆
     @RequestMapping("/test2")
     @ResponseBody
     public String login2(@RequestBody Person person) {
