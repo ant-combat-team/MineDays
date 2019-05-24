@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MineDays | 注册</title>
+    <!-- 新 Bootstr 核心 CSS 文件 --><link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 可选的Bootstrap主题文件（一般不使用） --><script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --><script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 --><script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        h1{font-family:Serif;}
+        h2{font-family:Sans-serif ;}
+        h3{font-family:Monospace;}
+        h3.normal {font-weight: normal}
+        h3.thick {font-weight: bold}
+        h3.thicker {font-weight: 600}
+        h4{font-family:Cursive;}
+        h5{font-family:Fantasy;}
+    </style>
+    <script type="text/javascript">
+        function SignTest(){
+            var email1 = document.getElementById("exampleInputEmail1").value;
+            var pass1  = document.getElementById("exampleInputPassword1").value;
+            var pass2  = document.getElementById("exampleInputPassword2").value;
+            var xps
+            var json
+            if(pass1==pass2){
+                json={email:email1,password:pass1}
+                $.ajax({
+                    url: 'signup',
+                    type: "POST",
+                    data: JSON.stringify(json),
+                    //dataType:"json",
+                    success: function (data) {
+                        if(data=="SUCCESS"){
+                            alert("注册成功！正在为您跳转登陆");
+                            window.location.href="login.html"
+                        }
+                        else if(data=="EXIST"){
+                            alert("该账号已注册，请直接登录！")
+                        }
+                        else {
+                            alert("抱歉！遭遇异常，请稍后再试。")
+                        }
+                    },
+                    contentType: "application/json;charset=UTF-8"
+                });
+                //1)GET 请求发送的并不是JSON字符串，jquery会给他转成url的请求参数
+                //2）traditonal：true 不能省，这是防止浏览器将集合参数名为"favs[]"这样后台会报错
+                //3）POST请求的JSON.stringify不能省略
+                //4）至于contentType大家都说不能省，但是我发现还是可以省略的（chrome浏览器测试的）
+            } else{
+                alert("两次密码输入不一致！请检查输入重试")
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        欢迎注册MineDays！
+                    </h3>
+                    <form role="form">
+                        <div class="form-group">
+
+                            <label for="exampleInputEmail1">
+                                邮箱：
+                            </label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" />
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="exampleInputPassword1">
+                                密码：
+                            </label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" />
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="exampleInputPassword2">
+                                确认密码：
+                            </label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" />
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="SignTest()">
+                            注册
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
