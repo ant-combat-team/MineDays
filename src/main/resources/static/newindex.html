@@ -257,36 +257,44 @@
 								twentyFour:true
 							});
 							$("#enddate").show();
-							dialog({
-								title:"新建日程",
-								content:$("#dialog-form"),
-								okValue:"确定",
-								ok:function(){
-									var	title=$("#title").val();
-									var detail = $("#detail").val();
-									var startdate = $("#startdate").val();
-									var starttime = $("#starttime").val().split(" ").join();
-									var enddate = $("#stopdate").val();
-									var endtime = $("#endtime").val().split(" ").join();
-									if(detail){
-										$.ajax({
-											url:'addschedule',
-					   						data:{title:detail,sdate:startdate,stime:starttime,edate:enddate,etime:endtime},
-					   						type:'POST',
-					   						dataType:'json',
-					  						success:function(data){
-					  							$("#calendar").fullCalendar("renderEvent",data,true);
-					  						},
-					  						error:function(){
-					  							alert("Failed");
-					  						}
+                            dialog({
+                                title:"新建日程",
+                                content:$("#dialog-form"),
+                                okValue:"确定",
+                                ok:function(){
+                                    var	title=$("#title").val();
+                                    var detail = $("#detail").val();
+                                    var startdate = $("#startdate").val();
+                                    var starttime = $("#starttime").val().split(" ").join("");
+                                    var enddate = $("#stopdate").val();
+                                    var endtime = $("#endtime").val().split(" ").join("");
+                                    // var allDay = $("#isallday").val();
+                                    if(detail){
+                                        $.ajax({
+                                            url:'addschedule',
+                                            data:{title:detail,startTime:startdate+starttime,endTime:enddate+endtime},
+                                            type:'POST',
+                                            dataType:'json',
+                                            success:function(data){
 
-										});
-									};
-								},
-								cancelValue:"关闭",
-								cancel:function(){}
-							}).showModal();
+                                                if(data=="SUCCESS"){
+                                                    alert("开始添加...")
+                                                    $("#calendar").fullCalendar("renderEvent",data,true);
+                                                    alert("添加成功！")
+                                                } else {
+                                                    alert("遇到错误！")
+                                                }
+
+                                            }
+
+                                        });
+                                    };
+                                },
+                                cancelValue:"关闭",
+                                cancel:function(){
+                                    //$("#ui-datepicker-div").remove();
+                                }
+                            }).showModal();
 						},
 					}],
 					okValue:"确定",
@@ -359,7 +367,7 @@
 								if(detail){
 									$.ajax({
 										url:'addschedule',
-				   						data:{title:detail,sdate:startdate,stime:starttime,edate:enddate,etime:endtime},
+                                        data:{title:detail,startTime:startdate+starttime,endTime:enddate+endtime},
 				   						type:'POST',
 				   						dataType:'json',
 				  						success:function(data){
