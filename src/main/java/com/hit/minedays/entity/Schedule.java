@@ -11,6 +11,7 @@ public class Schedule {
     private Date createTime;//创建日期
     private Date lastEditTime;//更新日期
     private Long userID;//创建人
+    private Long accountID;//创建人
     private Integer perorities;//权重（紧急程度）-
     private Integer enableStatus;//状态：0.不可用1.可用
 
@@ -72,6 +73,14 @@ public class Schedule {
 
     public Long getUserID() {
         return userID;
+    }
+
+    public void setAccountID(Long accountID) {
+        this.accountID = accountID;
+    }
+
+    public Long getAccountID() {
+        return accountID;
     }
 
     public void setUserID(Long userID) {

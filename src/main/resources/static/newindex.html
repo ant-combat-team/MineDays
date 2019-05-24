@@ -111,16 +111,21 @@
 								if(detail){
 									$.ajax({
 										url:'addschedule',
-				   						data:{title:detail,sdate:startdate,stime:starttime,edate:enddate,etime:endtime},
+				   						data:{title:detail,startTime:startdate+starttime,endTime:enddate+endtime},
 				   						type:'POST',
 				   						dataType:'json',
 				  						success:function(data){
-				  							$("#calendar").fullCalendar("renderEvent",data,true);
-				  						},
-				  						error:function(){
-				  							alert("Failed");
+
+											if(data=="SUCCESS"){
+												alert("开始添加...")
+												$("#calendar").fullCalendar("renderEvent",data,true);
+												alert("添加成功！")
+											} else {
+												alert("遇到错误！")
+											}
+
 				  						}
-				   						
+
 									});
 								};
 							},
@@ -169,7 +174,7 @@
 							values:[8,18],
 							slide: function( event, ui ) {
 				        		$( "#amount" ).val(ui.values[ 0 ] + ":00 - " + ui.values[ 1 ]+":00");
-				        		
+
 				      		}
 						});
 						$( "#amount" ).val($( "#slider" ).slider( "values", 0 ) +
@@ -275,14 +280,14 @@
 					  						error:function(){
 					  							alert("Failed");
 					  						}
-					   						
+
 										});
 									};
 								},
 								cancelValue:"关闭",
 								cancel:function(){}
 							}).showModal();
-						},	
+						},
 					}],
 					okValue:"确定",
 					ok:function(){
@@ -299,7 +304,7 @@
 		  						error:function(){
 		  							alert("Failed");
 		  						}
-		   						
+
 							});
 						};
 					},
@@ -307,7 +312,7 @@
 					cancel:function(){}
 				});
 				d.showModal();
-				
+
 			},
 			eventClick:function(event,jsEvent,view){
 				var editstarttime = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD HH:mm:ss");
@@ -363,7 +368,7 @@
 				  						error:function(){
 				  							alert("Failed");
 				  						}
-				   						
+
 									});
 								};
 							},
@@ -396,10 +401,10 @@
 					cancel:function(){}
 				}).showModal();
 			}
-		
+
 		});
 	});
-	</script> 
+	</script>
 </head>
 <body>
 	<div id="calendar"></div>

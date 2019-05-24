@@ -21,18 +21,18 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public int add(Person x) {
         //执行写入
-        int row = jdbcTemplate.update("INSERT INTO tab_person(userName, profileImg, email, gender, enableStatus, userType, createTime, lastEditTime) VALUES (?,?,?,?,?,?,?,?)",  new PreparedStatementSetter(){
+        int row = jdbcTemplate.update("INSERT INTO tab_person(userName, email, gender, enableStatus, userType, createTime, lastEditTime) VALUES (?,?,?,?,?,?,?)",  new PreparedStatementSetter(){
             //映射数据
             @Override
             public void setValues(PreparedStatement ps) throws SQLException {
                 ps.setString(1, x.getName());
-                ps.setString(2,x.getProfileImg());
-                ps.setString(3,x.getEmail());
-                ps.setString(4,x.getGender());
-                ps.setInt(5,x.getEnableStatus());
-                ps.setInt(6,x.getUserType());
-                ps.setDate(7,new Date(x.getCreateTime().getTime()));
-                ps.setDate(8,new Date(x.getLastEditTime().getTime()));
+               // ps.setString(2,x.getProfileImg());
+                ps.setString(2,x.getEmail());
+                ps.setString(3,x.getGender());
+                ps.setInt(4,x.getEnableStatus());
+                ps.setInt(5,x.getUserType());
+                ps.setDate(6,new Date(x.getCreateTime().getTime()));
+                ps.setDate(7,new Date(x.getLastEditTime().getTime()));
 
             }
         });

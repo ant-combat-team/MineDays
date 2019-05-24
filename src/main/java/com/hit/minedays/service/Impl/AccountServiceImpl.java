@@ -62,7 +62,7 @@ public class AccountServiceImpl implements AccountService {
             //映射每行数据
             @Override
             public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Account account =new Account();
+                Account account = new Account();
                 account.setAccountID(rs.getLong("accountID"));
                 account.setEmail(rs.getString("email"));
                 account.setPassword(rs.getString("password"));
@@ -116,6 +116,23 @@ public class AccountServiceImpl implements AccountService {
             }
         });
         //结果
+        return row;
+    }
+
+    //JDBC 更新userid
+    @Override
+    public int updateuserid(Account account) {
+        //SQL
+        String sql = "update tab_account set userID=? where email=?";
+        //结果
+        int row = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+            //映射数据
+            @Override
+            public void setValues(PreparedStatement preparedStatement) throws SQLException {
+                preparedStatement.setLong(1, account.getUserID());
+                preparedStatement.setString(2, account.getEmail());
+            }
+        });
         return row;
     }
 }

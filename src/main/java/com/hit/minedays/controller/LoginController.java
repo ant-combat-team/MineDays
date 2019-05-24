@@ -1,4 +1,5 @@
 package com.hit.minedays.controller;
+import com.hit.minedays.MinedaysApplication;
 import com.hit.minedays.entity.Account;
 import com.hit.minedays.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,9 @@ public class LoginController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping("signin")
+    @RequestMapping("login")
     @ResponseBody
-    public String login2(@RequestBody Account account) {
+    public String login(@RequestBody Account account) {
         List<Account> l = accountService.emlquery(account.getEmail().substring(0, 5));
         System.out.println(account.getEmail());
         System.out.println(account.getPassword());
@@ -21,6 +22,7 @@ public class LoginController {
             System.out.println("没有此账号");
             return "NOTEXIST";
         } else if (l.get(0).getPassword().equals(account.getPassword())) {//密码匹配成功
+            MinedaysApplication.gv.setAccountid(l.get(0).getAccountID()); //存下AccountID全局变量，跨类变量
             System.out.println("Success");
             return "SUCCESS";
         } else {//密码不匹配

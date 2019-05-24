@@ -23,7 +23,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public int add(Schedule x) {
         //执行写入
-        int row = jdbcTemplate.update("INSERT INTO tab_shcedule VALUES (?,?,?,?,?,?,?,?,?)",  new PreparedStatementSetter(){
+        int row = jdbcTemplate.update("INSERT INTO tab_shcedule(title, taskDesc, startTime, endTime, createTime, lastEditTime, perorities, enableStatus, accountID) VALUES (?,?,?,?,?,?,?,?,?)",  new PreparedStatementSetter(){
             //映射数据
             @Override
             public void setValues(PreparedStatement ps) throws SQLException {
@@ -33,9 +33,9 @@ public class ScheduleServiceImpl implements ScheduleService {
                 ps.setString(4,x.getEndTime());
                 ps.setDate(5,new Date(x.getCreateTime().getTime()));
                 ps.setDate(6,new Date(x.getLastEditTime().getTime()));
-                ps.setLong(7,x.getUserID());
-                ps.setInt(8, x.getPerorities());
-                ps.setInt(9,x.getEnableStatus());
+                ps.setInt(7, x.getPerorities());
+                ps.setInt(8,x.getEnableStatus());
+                ps.setLong(9,x.getAccountID());
             }
         });
         //返回结果

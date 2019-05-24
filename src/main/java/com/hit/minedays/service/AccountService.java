@@ -17,4 +17,7 @@ public interface AccountService {
 
     //更新数据
     int update(Account x);
+
+    //回填id
+    int updateuserid(Account account);
 }
