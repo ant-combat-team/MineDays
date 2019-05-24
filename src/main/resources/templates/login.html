@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MineDays | 登陆</title>
+    <title>MineDapays | 高效日程管理</title>
     <!-- 新 Bootstr 核心 CSS 文件 --><link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- 可选的Bootstrap主题文件（一般不使用） --><script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --><script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -22,30 +22,15 @@
 		function ClickToLogin(){
 			var email1 = document.getElementById("exampleInputEmail1").value;
 			var pass1  = document.getElementById("exampleInputPassword1").value;
-			var xps
-			var json
-			json={email:email1,name:pass1}
-			console.log(encodeURI((JSON.stringify(json))));
+			var json={email:email1,password:pass1}
 			$.ajax({
-				url: 'test3',
-				type: "GET",
-				traditional:true,
-				data: json,
-				success: function (data) {
-
-					window.location.href="index.html"
-				},
-				contentType: "application/json;charset=UTF-8"
-			});
-			json={email:email1,name:pass1}
-			$.ajax({
-				url: 'test2',
+				url: 'signin',
 				type: "POST",
 				data: JSON.stringify(json),
 				//dataType:"json",
 				success: function (data) {
 					if(data=="SUCCESS"){
-						window.location.href="index.html"
+						window.location.href="newindex.html"
 						//alert(data+"欢迎");
 					}
 					else if(data=="NOTEXIST"){
@@ -66,8 +51,7 @@
 			//4）至于contentType大家都说不能省，但是我发现还是可以省略的（chrome浏览器测试的）
 		}
 		function ClickToSign(){
-			window.location.href="http://127.0.0.1:63342/minedays/src/main/resources/static/sign.html";
-
+			window.location.href="signup.html";
 		}
 	</script>
 </head>
@@ -78,7 +62,7 @@
 			<h3>
 					欢迎使用MineDays！
 				<div>
-					使用之前请先登陆/注册
+					使用之前请先注册/登陆
 				</div>	
 			</h3>
 			<div class="row">
