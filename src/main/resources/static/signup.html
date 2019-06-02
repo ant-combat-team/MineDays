@@ -22,35 +22,41 @@
             var email1 = document.getElementById("exampleInputEmail1").value;
             var pass1  = document.getElementById("exampleInputPassword1").value;
             var pass2  = document.getElementById("exampleInputPassword2").value;
-            var xps
+
             var json
-            if(pass1==pass2){
-                json={email:email1,password:pass1}
-                $.ajax({
-                    url: 'signup',
-                    type: "POST",
-                    data: JSON.stringify(json),
-                    //dataType:"json",
-                    success: function (data) {
-                        if(data=="SUCCESS"){
-                            alert("注册成功！正在为您跳转");
-                            window.location.href="login.html"
+            if(email1=="emmmm@qq.com") { //emm //emmmmmmm //emmmm@qq  测试 emmmm@qq.com
+
+                if (pass1 == pass2) {
+                    json = {email: email1, password: pass1}
+                    $.ajax({
+                            url: 'signup',
+                            type: "POST",
+                            data: JSON.stringify(json),
+                            //dataType:"json",
+                            success: function (data) {
+                                if (data == "SUCCESS") {
+                                    alert("注册成功！正在为您跳转");
+                                    window.location.href = "login.html"
+                                } else if (data == "EXIST") {
+                                    alert("该账号已注册，请直接登录！")
+                                } else {
+                                    alert("抱歉！遭遇异常，请稍后再试。")
+                                }
+                            },
+                            contentType: "application/json;charset=UTF-8"
                         }
-                        else if(data=="EXIST"){
-                            alert("该账号已注册，请直接登录！")
-                        }
-                        else {
-                            alert("抱歉！遭遇异常，请稍后再试。")
-                        }
-                    },
-                    contentType: "application/json;charset=UTF-8"
-                });
-                //1)GET 请求发送的并不是JSON字符串，jquery会给他转成url的请求参数
-                //2）traditonal：true 不能省，这是防止浏览器将集合参数名为"favs[]"这样后台会报错
-                //3）POST请求的JSON.stringify不能省略
-                //4）至于contentType大家都说不能省，但是我发现还是可以省略的（chrome浏览器测试的）
-            } else{
-                alert("两次密码输入不一致！请检查输入重试")
+                    );
+                    //1)GET 请求发送的并不是JSON字符串，jquery会给他转成url的请求参数
+                    //2）traditonal：true 不能省，这是防止浏览器将集合参数名为"favs[]"这样后台会报错
+                    //3）POST请求的JSON.stringify不能省略
+                    //4）至于contentType大家都说不能省，但是我发现还是可以省略的（chrome浏览器测试的）
+                } else {
+                    alert("两次密码输入不一致！请检查输入重试")
+                }
+            }
+               // alert("注册成功！");}
+            else {
+                alert("邮箱名不合法！");
             }
         }
     </script>
